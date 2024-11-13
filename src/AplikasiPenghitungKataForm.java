@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -31,6 +33,11 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         //mengikuti ukuran text area horizontal yg sudah tersedia
         txtInput.setLineWrap(true);  // Enable line wrapping
         txtInput.setWrapStyleWord(true);  // Wrap at word boundaries
+        
+         // Enable line wrapping
+        txtHurufHitung.setLineWrap(true);
+        txtHurufHitung.setWrapStyleWord(true);
+        
         // Menambahkah Document Listener untuk Realtime Hitung
         txtInput.getDocument().addDocumentListener(new DocumentListener() {
         @Override
@@ -177,6 +184,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         lblSearch.setText("Hasil Pencarian Kata Akan Muncul Disini!");
 
         txtHurufHitung.setColumns(20);
+        txtHurufHitung.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         txtHurufHitung.setRows(5);
         jScrollPane1.setViewportView(txtHurufHitung);
 
@@ -192,35 +200,43 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                 .addComponent(btnKeluar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                .addGap(108, 108, 108)
+                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(txtSearch)
+                    .addComponent(lblKata)
+                    .addComponent(lblHuruf)
+                    .addComponent(lblKalimat)
+                    .addComponent(lblParagraf))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCari)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSearch))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblKata)
-                            .addComponent(lblHuruf)
-                            .addComponent(lblKalimat)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1)
+                            .addComponent(txtSearch)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnHitung)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnHapus)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSimpan))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblParagraf)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCari)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblSearch)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnHitung)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnHapus)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnSimpan))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 2, Short.MAX_VALUE)))))
                 .addGap(183, 183, 183))
         );
         layout.setVerticalGroup(
@@ -234,7 +250,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnKeluar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -243,25 +259,26 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                     .addComponent(btnHitung)
                     .addComponent(btnHapus)
                     .addComponent(btnSimpan))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(lblKata)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblHuruf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblKalimat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblParagraf)
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addComponent(lblParagraf))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(48, 48, 48)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(71, 71, 71)))
+                        .addGap(40, 40, 40)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -269,7 +286,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCari)
                     .addComponent(lblSearch))
-                .addGap(115, 115, 115))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -277,6 +294,11 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
 
     
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
+        // Memulai proses perhitungan kata 
+        if (txtInput.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Textfield tidak boleh kosong!", "Input Required", JOptionPane.WARNING_MESSAGE);
+        return;  // Exit the method if txtInput is empty
+    }
         // Mulai perhitungan kata
         String inputText = txtInput.getText().trim();
         // Word count
@@ -298,19 +320,25 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         int paragraphCount = paragraphs.length;
         lblParagraf.setText("Paragraf: " + paragraphCount);
         
-        // Count alphabetic characters
-        int alpabetHitung = countAlphabets(txtInput.getText());
-        txtHurufHitung.setText("Alpabet: " + alpabetHitung);
+         // Count letter frequencies
+        Map<Character, Integer> letterFrequency = countLetterFrequencies(inputText);
+
+        // Display letter frequencies in txtLetterFrequency
+        StringBuilder frequencyText = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : letterFrequency.entrySet()) {
+            frequencyText.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+        txtHurufHitung.setText(frequencyText.toString());
     }
 
-    private int countAlphabets(String text) {
-        int count = 0;
-        for (char c : text.toCharArray()) {
-            if (Character.isLetter(c)) {
-                count++;
+        private Map<Character, Integer> countLetterFrequencies(String text) {
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        for (char c : text.toLowerCase().toCharArray()) {  // Convert to lowercase for case-insensitive count
+            if (Character.isLetter(c)) {  // Only count letters
+                frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
             }
         }
-        return count;
+        return frequencyMap;
     
     }//GEN-LAST:event_btnHitungActionPerformed
 
@@ -332,7 +360,8 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         String results = "Kata: " + lblKata.getText() + "\n" +
                          "Huruf: " + lblHuruf.getText() + "\n" +
                          "Kalimat: " + lblKalimat.getText() + "\n" +
-                         "Paragraf: " + lblParagraf.getText() + "\n";
+                         "Paragraf: " + lblParagraf.getText() + "\n"+
+                         "Alfabet Frekuensi" + txtHurufHitung.getText() +"\n";
         
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {

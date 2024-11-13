@@ -1,0 +1,38 @@
+Input Text:
+AI is meant to help and improve the betterment of society but however reality speaks quite the opposite, many of us were swoon by how practical it is to let AI do our job. Many of us relying heavily on AI that we cannot do anything without the AI help.
+
+And thus, what will become of the modern society? Had we all 'enslaved' by AI? I wouldn't oppose of using AI either, however it would be wise for us to learn together and re-evaluate the input of AI. 
+
+Then again, even AI can still make a mistake meaning it also required our expertise to help them corrected their mistakes. Therefore, it is highly recommended for us to also have a basic knowledge of double checking before believing everything that AI said is 100% correct. Biases can occur in the most unexpected condition meaning there's nothing wrong to also do our research while also asking AI for help.
+
+Hasil:
+Kata: Kata: 157
+Huruf: Huruf: 705
+Kalimat: Kalimat: 8
+Paragraf: Paragraf: 3
+Alfabet Frekuensia: 53
+b: 12
+c: 21
+d: 20
+e: 92
+f: 12
+g: 15
+h: 36
+i: 58
+j: 1
+k: 7
+l: 29
+m: 16
+n: 42
+o: 60
+p: 14
+q: 2
+r: 37
+s: 36
+t: 60
+u: 20
+v: 10
+w: 16
+x: 2
+y: 12
+
