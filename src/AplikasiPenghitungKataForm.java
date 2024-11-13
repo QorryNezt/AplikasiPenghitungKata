@@ -20,10 +20,11 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         Color col = new Color(153,204,255); //Mengganti warna BG Biru Langit :D
         getContentPane().setBackground(col); //Memanggil konten utk menampilkan Biru Langit
         initComponents();
+        // Membuat teks tidak dapat di edit tapi bisa di klik
         txtOutput.setFocusable(true);
         txtHuruf.setFocusable(true);
     }
-    private void bersih(){
+    private void bersih(){ // Pembuatan Method pembersihan
         txtInput.setText("");
         txtOutput.setText("");
         txtHuruf.setText("");
@@ -174,26 +175,28 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
+        // Mulai perhitungan kata
         String inputText = txtInput.getText();
     if (!inputText.trim().isEmpty()) {
         String[] words = inputText.trim().split("\\s+");
         txtOutput.setText( String.valueOf(words.length) + " kata.");
     } else {
+        //Warning akan muncul jika tidak ada yang di input sama sekali
         JOptionPane.showMessageDialog(this, "Teks input tidak boleh kosong!", "Gagal menghitung", JOptionPane.WARNING_MESSAGE);
         txtOutput.setText("Tidak ada kata yang di hitung :(");
     }
-     // Count letters and letter frequency
+     // Menghitung jumlah jenis alfabet dan jumlah frekuensinya muncul
     int totalLetters = 0;
-    int[] letterFrequency = new int[26]; // Array to hold counts for each letter 'A' to 'Z'
+    int[] letterFrequency = new int[26]; // Array yang menampung semua alphabet mulai dari A - Z
     
     for (char c : inputText.toLowerCase().toCharArray()) {
-        if (Character.isLetter(c)) {  // Check if character is a letter
+        if (Character.isLetter(c)) {  // Mencek apakah yang di masukan adalah huruf
             totalLetters++;
-            letterFrequency[c - 'a']++; // Increment count for the letter
+            letterFrequency[c - 'a']++; // Increment count untuk huruf
         }
     }
     
-    // Display results in the txtLetterCount area
+    // Menampilkan hasil perhitungan huruf di dalam text area
     StringBuilder letterCountResult = new StringBuilder();
     letterCountResult.append("Total huruf: ").append(totalLetters).append("\n");
     for (int i = 0; i < 26; i++) {
@@ -202,7 +205,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                     .append(letterFrequency[i]).append("\n");
         }
     }
-    txtHuruf.setText(letterCountResult.toString()); // Display letter frequency count
+    txtHuruf.setText(letterCountResult.toString()); // menampilkan frekuensi huruf yang terpakai
     }//GEN-LAST:event_btnHitungActionPerformed
 
     private void btnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeluarActionPerformed
@@ -215,11 +218,11 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKeluarActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        bersih();
+        bersih(); //Memanggil method bersih untuk membersihkan semua text field apabila button ini di klik
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void txtInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInputFocusGained
-        bersih();
+        bersih(); //Memanggil method bersih untuk membersihkan semua text field apabila text field ini di klik
     }//GEN-LAST:event_txtInputFocusGained
 
     /**
