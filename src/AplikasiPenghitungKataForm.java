@@ -1,5 +1,9 @@
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /*
@@ -29,7 +33,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         lblKalimat.setText("Jumlah Kalimat Yang diketik Akan Muncul Disini!");
         lblParagraf.setText("Jumlah Paragraf Yang diketik Akan Muncul Disini!");
         txtSearch.setText("");
-       
+        lblSearch.setText("Hasil Pencarian Kata Akan Muncul Disini!");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +60,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnCari = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        lblSearch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 204, 255));
@@ -137,6 +142,9 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jLabel4.setText("Total Semua:");
 
+        lblSearch.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        lblSearch.setText("Hasil Pencarian Kata Akan Muncul Disini!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,7 +157,10 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCari)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCari)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSearch))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblParagraf)
                         .addComponent(lblKata)
@@ -164,7 +175,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                             .addComponent(btnSimpan))
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtSearch)))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnKeluar)
@@ -209,7 +220,9 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(btnCari)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCari)
+                    .addComponent(lblSearch))
                 .addGap(44, 44, 44))
         );
 
@@ -254,11 +267,35 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
+         try {
+        String results = "Kata: " + lblKata.getText() + "\n" +
+                         "Huruf: " + lblHuruf.getText() + "\n" +
+                         "Kalimat: " + lblKalimat.getText() + "\n" +
+                         "Paragraf: " + lblParagraf.getText() + "\n";
+        
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            FileWriter writer = new FileWriter(file);
+            writer.write("Input Text:\n" + txtInput.getText() + "\n\nHasil:\n" + results);
+            writer.close();
+            JOptionPane.showMessageDialog(this, "File berhasil tersimpan!");
+        }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan pada saat penyimpanan file.");
+        }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        // TODO add your handling code here:
+        String inputText = txtInput.getText().toLowerCase();
+        String cariKata = txtSearch.getText().toLowerCase();
+    
+    if (!cariKata.isEmpty() && inputText.contains(cariKata)) {
+        int count = inputText.split("\\b" + cariKata + "\\b").length - 1;
+        txtSearch.setText("Munculnya kata '" + cariKata + "': " + count + " kali");
+    } else {
+        lblSearch.setText("'" + cariKata + "' tidak ditemukan.");
+    }
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -315,6 +352,7 @@ public class AplikasiPenghitungKataForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblKalimat;
     private javax.swing.JLabel lblKata;
     private javax.swing.JLabel lblParagraf;
+    private javax.swing.JLabel lblSearch;
     private javax.swing.JTextArea txtInput;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
