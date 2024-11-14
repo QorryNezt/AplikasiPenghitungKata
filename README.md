@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/41f576a1-2531-4c09-b865-38ca38384e8c)# AplikasiPenghitungKata
+# AplikasiPenghitungKata
  Tugas 5  - Sayyida Qurrata A'yunin (2210010331)<br>
  ---
  Aplikasi ini bertujuan untuk menghitung jumlah kata yang diketik, menambahkan fitur ekstra seperti berapa banyak huruf yang digunakan serta frekuensi banyaknya huruf tersebut dipakai, tersedia Button Hapus. <br>
